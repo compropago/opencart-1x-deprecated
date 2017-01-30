@@ -1,0 +1,27 @@
+.cp-provider{
+    float: left;
+    display: block;
+    width: 75px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    position: relative;
+    transition: all .2s linear;
+    box-shadow: none}
+.cp-provider.cp-selected {
+    box-shadow: 0 0 6px 3px #00aaef}
+.cp-provider img {
+    display: block;
+    margin: 0 auto;
+    float: none;
+    width: 100%}
+#send-config {
+    text-decoration: none;
+    color: #FFF;
+    display: inline-block;
+    padding: 5px 15px 7px 15px;
+    background: #003A88;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -khtml-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;}
