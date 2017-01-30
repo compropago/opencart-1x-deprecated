@@ -111,7 +111,10 @@ class ControllerPaymentCompropago extends Controller
                 ($this->request->post['compropago_active_mode'] == 'yes')
             );
 
-            $client->api->createWebhook($this->url->link('payment/compropago/webhook'));
+            $webhook = $this->url->link('payment/compropago/webhook');
+            $webhook = str_replace('admin/','', $webhook);
+
+            $client->api->createWebhook($webhook);
 
 			$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
 		}
