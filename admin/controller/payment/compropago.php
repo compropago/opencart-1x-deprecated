@@ -105,6 +105,14 @@ class ControllerPaymentCompropago extends Controller
 			
 			$this->session->data['success'] = $this->language->get('text_success');
 
+             $client = new Client(
+                $this->request->post['compropago_public_key'],
+                $this->request->post['compropago_secret_key'],
+                ($this->request->post['compropago_active_mode'] == 'yes')
+            );
+
+            $client->api->createWebhook($this->url->link('payment/compropago/webhook'));
+
 			$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
 		}
  
