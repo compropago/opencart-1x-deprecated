@@ -28,7 +28,7 @@ Magento. Con ComproPago puede recibir pagos en OXXO, 7Eleven más tiendas en tod
 3. Ingresar en el panel de admistración a **Extensions > Payments** y dar click en el boton install de **Compropago Payment Method**.
 
 
-## Configurar ComproPago
+### Configurar ComproPago
 
 1. Para iniciar la configuración ir a **Extensions > Payments**. Dar click en el boton editar de **Edit Compropago**.
 
@@ -40,7 +40,7 @@ Para mostrar u ocultar los logos de proveedores modifique el campo **Show Logo**
 4. Dentro de la pestaña **Estatus Configurations** establecer **New Order status** = Processing y **Approve Order Status** = Processed.
 
 
-## ¿Cómo trabaja el módulo?
+### ¿Cómo trabaja el módulo?
 Una vez que el cliente sabe que comprar y continúa con el proceso, seleccionará la opción de elegir el método de pago.
 Aquí aparecerá la opción de pago con ComproPago, selecciona el establecimiento de su conveniencia y el botón de **continuar**.
 
@@ -49,32 +49,6 @@ por lo que solo resta realizar el pago en el establecimiento que seleccionó ant
 
 Una vez que el cliente generó su órden de pago, dentro del panel de control de ComproPago la orden se muestra como
 "PENDIENTE". Sólo resta que el cliente realice el depósito a la brevedad posible.
-
-
----
-
-## Configuración del plugin
-
-1. Dirígete a **System -> Configuration -> Sales -> Payment Methods** y selecciona
-   **ComproPago**.
-
-   ***Nota:*** La opción de **Habilitar Logos** es para mostrar las imágenes de los establecimientos con
-   los que procesamos pagos
-
-2. Agrega la **llave privada** y **llave pública** que se encuentran en el apartado de configuración dentro del
-   [panel de control de ComproPago][Compropago-Panel].
-
-   Asegúrate de que las llaves coincidan con el modo activo o modo pruebas según sea el caso.
-
----
-
-## Sincronización con la notificación Webhook
-1. Ingresa al área de [Webhooks][Compropago-Webhooks] en el panel de ComproPago.
-2. Introduce la dirección: **http://direcciondetusitio.com/index.php/compropago/webhook/**
-3. Selecciona el botón "Probar" y verifica que el servidor de la tienda está respondiendo, debera aparecer un
-   mensaje con la leyenda "Probando el WebHook?, Ruta correcta."
-
-Una vez completados estos pasos el proceso de instalación ha finalizado.
 
 ## Documentación
 
