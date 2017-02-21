@@ -9,9 +9,11 @@ class ModelPaymentCompropago extends Model
         $this->load->language('payment/compropago');
         $this->load->model('setting/setting');
         
+       $title=$this->config->get('compropago_title');
+
         $method_data = array(
             'code'       => 'compropago',
-            'title'      => !empty($this->config->get('compropago_title')) ? $this->config->get('compropago_title') : 'ComproPago - Pagos en efectivo.',
+            'title'      => !empty($title) ? $title : 'ComproPago - Pagos en efectivo.',
             'terms'      => true,
             'sort_order' => $this->config->get('compropago_sort_order')
         );
