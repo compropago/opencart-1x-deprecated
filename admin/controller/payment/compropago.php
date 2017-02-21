@@ -204,8 +204,9 @@ class ControllerPaymentCompropago extends Controller
         /**
          * Recuperacion de información
          */
+        $compropago_title=$this->config->get('compropago_title');
         $this->data['compropago_title'] = isset($this->request->post['compropago_title']) ?
-            $this->request->post['compropago_title'] : !empty($this->config->get('compropago_title')) ? 
+            $this->request->post['compropago_title'] : !empty($compropago_title) ? 
                 $this->config->get('compropago_title') : 'ComproPago - Pagos en efectivo.';
 
         $this->data['compropago_secret_key'] = isset($this->request->post['compropago_secret_key']) ?
@@ -286,4 +287,4 @@ class ControllerPaymentCompropago extends Controller
         }
         return $final;
     }
-}
+}	
