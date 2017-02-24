@@ -96,7 +96,7 @@ class ControllerPaymentCompropago extends Controller
         );
 
         $new_order = $client->api->placeOrder($order);
-
+        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('compropago_status'));
         $this->redirect($this->url->link('payment/compropago/success', 'id='.base64_encode($new_order->id)));
     }
 
