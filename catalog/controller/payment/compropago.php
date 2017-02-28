@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
@@ -96,7 +94,7 @@ class ControllerPaymentCompropago extends Controller
         );
 
         $new_order = $client->api->placeOrder($order);
-
+        $this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('compropago_status'));
         $this->redirect($this->url->link('payment/compropago/success', 'id='.base64_encode($new_order->id)));
     }
 
@@ -184,7 +182,7 @@ class ControllerPaymentCompropago extends Controller
                         $this->config->get('compropago_order_status_approve_id'),
                         $comment
                     );
-                    $this->db->query("UPDATE " . DB_PREFIX . "order SET order_status_id = '" . (int)$this->config->get('compropago_order_status_approve_id') . "' WHERE order_id = '" . (int)$response->order_info->order_id . "'");
+                    $this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$this->config->get('compropago_order_status_approve_id') . "' WHERE order_id = '" . (int)$response->order_info->order_id . "'");
                     printf("[%s]\n",      $comment);
                     break;
                 case 'charge.pending':
@@ -195,7 +193,7 @@ class ControllerPaymentCompropago extends Controller
                         $comment
                     );
                     
-                    $this->db->query("UPDATE " . DB_PREFIX . "order SET order_status_id = '" . (int)$this->config->get('compropago_order_status_new_id') . "' WHERE order_id = '" . (int)$response->order_info->order_id . "'" );
+                    $this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$this->config->get('compropago_order_status_new_id') . "' WHERE order_id = '" . (int)$response->order_info->order_id . "'" );
                     printf("[%s]\n",      $comment);
 
 
