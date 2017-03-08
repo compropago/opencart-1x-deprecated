@@ -13,7 +13,7 @@ class ControllerPaymentCompropago extends Controller
         $this->load->model('setting/setting');
         $this->load->model('checkout/order');
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
-
+        
         $this->data['text_title'] = $this->language->get('text_title');
         $this->data['button_confirm'] = $this->language->get('button_confirm');
 
@@ -28,8 +28,9 @@ class ControllerPaymentCompropago extends Controller
             $this->config->get('compropago_secret_key'),
             $auth
         );
-
-        $providers = $client->api->listProviders(true, floatval($order_info['total']), $order_info['currency_code']);
+        $orderTotal = $order_info['total'];
+        $defCurrency = $this->config->get('config_currency');
+        $providers = $client->api->listProviders(true, floatval($orderTotal), $defCurrency);
         $active = explode(',', $this->config->get('compropago_active_providers'));
         $final = [];
 
@@ -58,18 +59,19 @@ class ControllerPaymentCompropago extends Controller
     {
         $this->load->model('setting/setting');
         $this->load->model('checkout/order');
+        $this->load->model('localisation/currency');
         $order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
-
-        $products = $this->cart->getProducts();
+        $results    = $this->model_localisation_currency->getCurrencies();  
+        $products   = $this->cart->getProducts();
         $order_name = '';
-
+        $orderDefaultCurrency = $this->config->get('config_currency');
         foreach ($products as $product) {
             $order_name .= $product['name'];
         }
 
         $data = array(
             'order_id'           => $order_info['order_id'],
-            'order_price'        => floatval($order_info['total']),
+            'order_price'        => floatval($order_info['total']) * $order_info['currency_value'],
             'order_name'         => $order_name,
             'customer_name'      => $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'],
             'customer_email'     => $order_info['email'],
@@ -78,7 +80,6 @@ class ControllerPaymentCompropago extends Controller
             'app_client_name'    => 'opencart',
             'app_client_version' => VERSION
         );
-
         $order = Factory::getInstanceOf('PlaceOrderInfo', $data);
 
         if ($this->config->get('compropago_active_mode') == 'yes') {
