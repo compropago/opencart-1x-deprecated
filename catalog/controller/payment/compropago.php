@@ -29,22 +29,30 @@ class ControllerPaymentCompropago extends Controller
             $auth
         );
         $orderTotal = $order_info['total'];
+
         $defCurrency = $this->config->get('config_currency');
         $providers = $client->api->listProviders(true, floatval($orderTotal), $defCurrency);
+        $transactProv = !empty($providers) ? $providers : 0;
         $active = explode(',', $this->config->get('compropago_active_providers'));
+
         $final = [];
 
         foreach ($providers as $provider) {
-            foreach ($active as $key => $value) {
+            foreach ($active as $value) {
                 if ($provider->internal_name == $value) {
                     $final[] = $provider;
-                    break;
                 }
             }
         }
-
-        $this->data['providers'] = $final;
-        $this->data['action'] = $this->url->link('payment/compropago/send');
+        
+        if ($final[0] == NULL) {
+            $flag = 0;
+        }else{
+            $flag = 1;
+        }
+        $this->data['flags']        = $flag;
+        $this->data['providers']    = $final;
+        $this->data['action']       = $this->url->link('payment/compropago/send');
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/compropago.tpl')) {
             $this->template = $this->config->get('config_template') . '/template/payment/compropago.tpl';
