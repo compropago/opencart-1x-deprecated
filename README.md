@@ -2,7 +2,7 @@
 
 ## Descripción
 Este módulo provee el servicio de ComproPago para poder generar órdenes de pago dentro de la plataforma de e-commerce 
-Magento. Con ComproPago puede recibir pagos en OXXO, 7Eleven más tiendas en todo México.
+Magento. Con ComproPago puede recibir pagos en 7Eleven, Extra más tiendas en todo México.
 
 [Registrarse en ComproPago ] (https://compropago.com)
 
@@ -14,7 +14,7 @@ Magento. Con ComproPago puede recibir pagos en OXXO, 7Eleven más tiendas en tod
 - [Información de contacto](https://compropago.com/contacto)
 
 ## Requerimientos
-* [PHP >= 5.5](http://www.php.net/)
+* [PHP >= 5.4](http://www.php.net/)
 * [PHP JSON extension](http://php.net/manual/en/book.json.php)
 * [PHP cURL extension](http://php.net/manual/en/book.curl.php)
 
