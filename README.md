@@ -1,4 +1,4 @@
-# ComproPago Plugin Opencary 1.5.x
+# ComproPago Plugin Opencart 1.5.x
 
 ## Descripción
 Este módulo provee el servicio de ComproPago para poder generar órdenes de pago dentro de la plataforma de e-commerce 
